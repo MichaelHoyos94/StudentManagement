@@ -8,12 +8,17 @@ const languajes = [
 
 export default function LanguajeSwitcher() {
     const { i18n, t } = useTranslation();
+    const changeLanguage = (e) => {
+        const selectedLang = e.target.value;
+        i18n.changeLanguage(selectedLang);
+        localStorage.setItem('lang', selectedLang)
+    }
     return (
         <div>
             <label>
                 {t('Language')}:
             </label>
-            <select>
+            <select onChange={changeLanguage} value={i18n.language}>
                 {languajes.map((lang) => (
                     <option key={lang.code} value={lang.code}>
                         {lang.label}

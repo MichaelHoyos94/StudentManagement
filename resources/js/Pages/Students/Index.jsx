@@ -1,8 +1,10 @@
 import DashboardLayout from "@/Layouts/DashboardLayout";
+import { usePage } from "@inertiajs/react";
 import { useTranslation } from "react-i18next";
 
 export default function Students() {
     const { t, i18n } = useTranslation();
+    const { course } = usePage().props;
     return (
         <DashboardLayout>
             <main className="flex-1 p-6">
@@ -17,6 +19,7 @@ export default function Students() {
                     <div className="bg-white p-6 rounded shadow text-sm text-gray-600">
                         <p><strong>{t('Name')}:</strong></p>
                         <p><strong>{t('Last Name')}:</strong></p>
+                        <p><strong>{t('Course')}:</strong> {t(course)}</p>
                     </div>
                 </section>
             </main>

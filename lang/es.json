@@ -10,5 +10,8 @@
     "Here you can manage student data": "Aquí puedes gestionar los datos de los estudiantes",
     "Welcome to students page": "Bienvenido a la página de estudiantes",
     "Here you can manage teacher data": "Aquí puedes gestionar los datos de los profesores",
-    "Welcome to teachers page": "Bienvenido a la página de profesores"
+    "Welcome to teachers page": "Bienvenido a la página de profesores",
+    "Language": "Idioma",
+    "Course": "Curso",
+    "Computer Science": "Ciencia de la Computación"
 }

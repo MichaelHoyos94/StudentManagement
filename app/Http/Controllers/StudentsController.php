@@ -9,11 +9,7 @@ class StudentsController extends Controller
     public function index()
     {
         return inertia('Students/Index', [
-            'name' => 'John Doe',
-            'age' => 20,
-            'course' => 'Computer Science',
-            'page' => 1,
-            'lang' => 'en'
+            'course' => 'Computer Science'
         ]);
     }
 
