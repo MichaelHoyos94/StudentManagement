@@ -8,6 +8,7 @@ class StudentsController extends Controller
 {
     public function index()
     {
+
         return inertia('Students/Index', [
             'course' => 'Computer Science'
         ]);
