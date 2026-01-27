@@ -2,13 +2,15 @@ import DashboardLayout from "@/Layouts/DashboardLayout";
 import { useState } from "react";
 import { usePage, router } from "@inertiajs/react";
 import { useTranslation } from "react-i18next";
+import { Link } from "@inertiajs/react";
 
 export default function Students() {
 
     const { t, i18n } = useTranslation();
-    const { students, search: initialSearch, sort, direction } = usePage().props;
+    const { students, search: initialSearch, sort, direction, flash } = usePage().props;
 
     const [search, setSearch] = useState(initialSearch || '');
+    const [msg, setMsg] = useState(flash.success || '');
 
     const handlePageChange = (url) => {
         if (url) router.visit(url);
@@ -41,8 +43,23 @@ export default function Students() {
         return direction === 'asc' ? '↑' : '↓';
     };
 
+    const handleDelete = (id) => {
+        if (confirm('Are you sure you want to delete this student?')) {
+            router.visit(route('students.delete', id), {
+                method: 'delete',
+            });
+        }
+    };
+
+    setTimeout(() => setMsg(null), 3000);
+
     return (
         <DashboardLayout>
+            {msg && (
+                <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
+                    <span className="block sm:inline">{msg}</span>
+                </div>
+            )}
             <main className="flex-1 p-6">
                 <header className="mb-6 border-b pb-4">
                     <h1 className="text-2xl font-bold text-gray-800">{t('Students Page')}</h1>
@@ -68,16 +85,26 @@ export default function Students() {
                                 <th className="p-2 cursor-pointer" onClick={() => handleSort('email')}>Email {renderSortArrow('email')}</th>
                                 <th className="p-2 cursor-pointer" onClick={() => handleSort('gender')}>Gender {renderSortArrow('gender')}</th>
                                 <th className="p-2 cursor-pointer" onClick={() => handleSort('score')}>Score {renderSortArrow('score')}</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {students.data.map((sudent, index) => (
+                            {students.data.map((student, index) => (
                                 <tr>
                                     <td className="p-2">{index + 1}</td>
-                                    <td className="p-2">{sudent.name}</td>
-                                    <td className="p-2">{sudent.email}</td>
-                                    <td className="p-2">{sudent.gender}</td>
-                                    <td className="p-2">{sudent.score}</td>
+                                    <td className="p-2">{student.name}</td>
+                                    <td className="p-2">{student.email}</td>
+                                    <td className="p-2">{student.gender}</td>
+                                    <td className="p-2">{student.score}</td>
+                                    <td>
+                                        <Link href={route('students.edit', student.id)} className="inline-block px-3 py-1 bg-yellow-500 text-white rounded hover:bg-yellow-600 transition">Edit</Link>
+                                    </td>
+                                    <button
+                                        className="inline-block px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition"
+                                        onClick={() => handleDelete(student.id)}>
+                                        Delete
+                                    </button>
+                                    <Link href={route('student.view', student.id)}>Details</Link>
                                 </tr>
                             ))}
                         </tbody>

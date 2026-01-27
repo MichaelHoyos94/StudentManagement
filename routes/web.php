@@ -27,6 +27,10 @@ Route::controller(StudentsController::class)->group(function () {
     Route::get('students/create', 'create')->name('students.create');
     Route::post('students', 'store')->name('students.store');
     Route::get('students/data/{page}/{lang?}', 'withData')->name('students.index');
+    Route::get('student/edit/{id}', 'edit')->name('students.edit');
+    Route::post('student/update', 'update')->name('students.update');
+    Route::delete('student/destroy/{id}', 'destroy')->name('students.delete');
+    Route::get('student/view/{id}', 'show')->name('student.view');
 });
 
 Route::inertia('teachers', 'Teachers/Index')->name('teachers.list');

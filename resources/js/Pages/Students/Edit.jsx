@@ -1,25 +1,26 @@
 import DashboardLayout from "@/Layouts/DashboardLayout";
 import { useForm } from "@inertiajs/react";
 
-export default function CreateStudent() {
+export default function EditStudent({ student }) {
     const {data, setData, post, errors} = useForm({
-        name: '',
-        email: '',
-        gender: 'male',
-        score: '',
+        id: student.id,
+        name: student.name,
+        email: student.email,
+        gender: student.gender,
+        score: student.score,
         image: null
     });
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        post(route('students.store'));
+        post(route('students.update'));
     }
 
     return (
         <DashboardLayout>
             <main className="p-6 flex justify-center items-center min-h-screen bg-gray-100">
                 <div className="w-full max-w-2xl bg-white rounded-2xl shadow-lg p-9">
-                    <h1 className="text-3xl font-semibold text-gray-800 mb-6 text-center">Create Student</h1>
+                    <h1 className="text-3xl font-semibold text-gray-800 mb-6 text-center">Edit Student</h1>
                     <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6" action="">
                         <div className="col-span-full">
                             <label className="block text-gray-700 font-medium mb-1">Name</label>
@@ -79,7 +80,7 @@ export default function CreateStudent() {
                                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
                             />
                         </div>
-                        <button type="submit" className="w-full bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Create Student</button>
+                        <button type="submit" className="w-full bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Edit Student</button>
                     </form>
                 </div>
             </main>
