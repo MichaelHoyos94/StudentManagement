@@ -1,117 +1,97 @@
-import { useEffect } from 'react';
-import GuestLayout from '@/Layouts/GuestLayout';
-import InputError from '@/Components/InputError';
-import InputLabel from '@/Components/InputLabel';
-import PrimaryButton from '@/Components/PrimaryButton';
-import TextInput from '@/Components/TextInput';
-import { Head, Link, useForm } from '@inertiajs/react';
+import { useForm } from "@inertiajs/react";
 
 export default function Register() {
-    const { data, setData, post, processing, errors, reset } = useForm({
+
+    const { data, setData, post, processing, errors } = useForm({
         name: '',
         email: '',
         password: '',
         password_confirmation: '',
     });
 
-    useEffect(() => {
-        return () => {
-            reset('password', 'password_confirmation');
-        };
-    }, []);
-
     const submit = (e) => {
         e.preventDefault();
-
         post(route('register'));
     };
-
     return (
-        <GuestLayout>
-            <Head title="Register" />
+        <div className="min-h-screen flex items-center justify-center bg-slate-50">
+            <div className="w-full max-w-md bg-white p-8 rounded-xl shadow-sm">
+                <h1 className="text-2xl font-semibold text-slate-800 text-center mb-2">
+                    Registro Académico
+                </h1>
+                <p className="text-sm text-slate-500 text-center mb-6">
+                    Crea tu cuenta institucional
+                </p>
 
-            <form onSubmit={submit}>
-                <div>
-                    <InputLabel htmlFor="name" value="Name" />
+                <form onSubmit={submit} className="space-y-4">
+                    <div>
+                        <label className="block text-sm font-medium text-slate-700">
+                            Nombre completo
+                        </label>
+                        <input
+                            type="text"
+                            placeholder="Juan Pérez"
+                            className="mt-1 w-full rounded-md border border-slate-300 px-3 py-2 focus:outline-none focus:ring-1 focus:ring-slate-400"
+                            value={data.name}
+                            required
+                            onChange={(e) => setData('name', e.target.value)}
+                        />
+                        {errors.name && <div className='text-sm text-red-600 mt-1'>{errors.name}</div>}
+                    </div>
 
-                    <TextInput
-                        id="name"
-                        name="name"
-                        value={data.name}
-                        className="mt-1 block w-full"
-                        autoComplete="name"
-                        isFocused={true}
-                        onChange={(e) => setData('name', e.target.value)}
-                        required
-                    />
+                    <div>
+                        <label className="block text-sm font-medium text-slate-700">
+                            Correo institucional
+                        </label>
+                        <input
+                            type="email"
+                            placeholder="usuario@universidad.edu"
+                            className="mt-1 w-full rounded-md border border-slate-300 px-3 py-2 focus:outline-none focus:ring-1 focus:ring-slate-400"
+                            value={data.email}
+                            required
+                            onChange={(e) => setData('email', e.target.value)}
+                        />
+                        {errors.email && <div className='text-sm text-red-600 mt-1'>{errors.email}</div>}
+                    </div>
 
-                    <InputError message={errors.name} className="mt-2" />
-                </div>
+                    <div>
+                        <label className="block text-sm font-medium text-slate-700">
+                            Contraseña
+                        </label>
+                        <input
+                            type="password"
+                            className="mt-1 w-full rounded-md border border-slate-300 px-3 py-2 focus:outline-none focus:ring-1 focus:ring-slate-400"
+                            value={data.password}
+                            required
+                            onChange={(e) => setData('password', e.target.value)}
+                        />
+                    </div>
 
-                <div className="mt-4">
-                    <InputLabel htmlFor="email" value="Email" />
+                    <div>
+                        <label className="block text-sm font-medium text-slate-700">
+                            Confirmar contraseña
+                        </label>
+                        <input
+                            type="password"
+                            className="mt-1 w-full rounded-md border border-slate-300 px-3 py-2 focus:outline-none focus:ring-1 focus:ring-slate-400"
+                            value={data.password_confirmation}
+                            required
+                            onChange={(e) => setData('password_confirmation', e.target.value)}
+                        />
+                    </div>
 
-                    <TextInput
-                        id="email"
-                        type="email"
-                        name="email"
-                        value={data.email}
-                        className="mt-1 block w-full"
-                        autoComplete="username"
-                        onChange={(e) => setData('email', e.target.value)}
-                        required
-                    />
-
-                    <InputError message={errors.email} className="mt-2" />
-                </div>
-
-                <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Password" />
-
-                    <TextInput
-                        id="password"
-                        type="password"
-                        name="password"
-                        value={data.password}
-                        className="mt-1 block w-full"
-                        autoComplete="new-password"
-                        onChange={(e) => setData('password', e.target.value)}
-                        required
-                    />
-
-                    <InputError message={errors.password} className="mt-2" />
-                </div>
-
-                <div className="mt-4">
-                    <InputLabel htmlFor="password_confirmation" value="Confirm Password" />
-
-                    <TextInput
-                        id="password_confirmation"
-                        type="password"
-                        name="password_confirmation"
-                        value={data.password_confirmation}
-                        className="mt-1 block w-full"
-                        autoComplete="new-password"
-                        onChange={(e) => setData('password_confirmation', e.target.value)}
-                        required
-                    />
-
-                    <InputError message={errors.password_confirmation} className="mt-2" />
-                </div>
-
-                <div className="flex items-center justify-end mt-4">
-                    <Link
-                        href={route('login')}
-                        className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    <button
+                        type="submit"
+                        className="w-full mt-4 bg-slate-700 text-white py-2 rounded-md hover:bg-slate-800 transition"
                     >
-                        Already registered?
-                    </Link>
+                        Registrarse
+                    </button>
+                </form>
 
-                    <PrimaryButton className="ms-4" disabled={processing}>
-                        Register
-                    </PrimaryButton>
-                </div>
-            </form>
-        </GuestLayout>
+                <p className="text-xs text-slate-500 text-center mt-6">
+                    © {new Date().getFullYear()} Plataforma Académica
+                </p>
+            </div>
+        </div>
     );
 }

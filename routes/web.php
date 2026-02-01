@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentsController;
 use Illuminate\Foundation\Application;
@@ -22,6 +23,8 @@ Route::get('students/{page}/{lang?}', function ($page, $lang = 'en') {
     ]);
 });*/
 
+Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
 Route::controller(StudentsController::class)->group(function () {
     Route::get('students', 'index')->name('students.list');
     Route::get('students/create', 'create')->name('students.create');
@@ -34,6 +37,8 @@ Route::controller(StudentsController::class)->group(function () {
 });
 
 Route::inertia('teachers', 'Teachers/Index')->name('teachers.list');
+
+require __DIR__.'/auth.php';
 
 Route::fallback(function () {
     return Inertia::render('Errors/NotFound');
