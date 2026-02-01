@@ -15,7 +15,7 @@ class StudentsController extends Controller
         $sortDirection = $request->input('direction', 'asc');
         $students = Student::query()->when($search, function ($query, $search) {
             $query->where('name', 'like', '%' . $search . '%')
-                  ->orWhere('email', 'like', '%' . $search . '%');
+                ->orWhere('email', 'like', '%' . $search . '%');
         })->orderBy($sortField, $sortDirection)->paginate(3)->withQueryString();
         return inertia('Students/Index', [
             'students' => $students,
@@ -54,7 +54,7 @@ class StudentsController extends Controller
         $student->email = $request->input('email');
         $student->gender = $request->input('gender');
         $student->score = $request->input('score');
-        if ($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             $path = $request->file('image')->store('students', 'public');
             $student->image = $path;
         }
@@ -86,7 +86,7 @@ class StudentsController extends Controller
         $student->email = $request->input('email');
         $student->gender = $request->input('gender');
         $student->score = $request->input('score');
-        if ($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             if ($student->image && Storage::disk('public')->exists($student->image)) {
                 Storage::disk('public')->delete($student->image);
             }

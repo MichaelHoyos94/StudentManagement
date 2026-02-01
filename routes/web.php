@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\CoursesController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentsController;
+use App\Http\Controllers\TeachersController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -36,7 +38,25 @@ Route::controller(StudentsController::class)->group(function () {
     Route::get('student/view/{id}', 'show')->name('student.view');
 });
 
-Route::inertia('teachers', 'Teachers/Index')->name('teachers.list');
+Route::controller(TeachersController::class)->group(function () {
+    Route::get('teachers', 'index')->name('teachers.list');
+    Route::get('teachers/create', 'create')->name('teachers.create');
+    Route::post('teachers', 'store')->name('teachers.store');
+    Route::get('teacher/view/{id}', 'show')->name('teacher.view');
+    Route::get('teacher/edit/{id}', 'edit')->name('teachers.edit');
+    Route::post('teacher/update', 'update')->name('teachers.update');
+    Route::delete('teacher/destroy/{id}', 'destroy')->name('teachers.delete');
+});
+
+Route::controller(CoursesController::class)->group(function () {
+    Route::get('courses', 'index')->name('courses.list');
+    Route::get('courses/create', 'create')->name('courses.create');
+    Route::post('courses', 'store')->name('courses.store');
+    Route::get('course/view/{id}', 'show')->name('course.view');
+    Route::get('courses/edit/{id}', 'edit')->name('courses.edit');
+    Route::post('courses/update', 'update')->name('courses.update');
+    Route::delete('courses/destroy/{id}', 'destroy')->name('courses.delete');
+});
 
 require __DIR__.'/auth.php';
 
