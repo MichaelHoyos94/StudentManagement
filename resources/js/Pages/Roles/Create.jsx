@@ -1,25 +1,22 @@
 import DashboardLayout from "@/Layouts/DashboardLayout";
 import { useForm } from "@inertiajs/react";
 
-export default function CreateStudent() {
+export default function CreateRole() {
     const { data, setData, post, errors } = useForm({
-        name: '',
-        email: '',
-        gender: 'male',
-        score: '',
-        image: null
+        Role: '',
+        Descripcion: '',
     });
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        post(route('students.store'));
+        post(route('roles.store'));
     }
 
     return (
         <DashboardLayout>
             <main className="p-6 flex justify-center items-center min-h-screen bg-gray-100">
                 <div className="w-full max-w-2xl bg-white rounded-2xl shadow-lg p-9">
-                    <h1 className="text-3xl font-semibold text-gray-800 mb-6 text-center">Create Student</h1>
+                    <h1 className="text-3xl font-semibold text-gray-800 mb-6 text-center">Create Role</h1>
                     <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6" action="">
                         <div className="col-span-full">
                             <label className="block text-gray-700 font-medium mb-1">Name</label>
@@ -28,7 +25,7 @@ export default function CreateStudent() {
                                 value={data.name}
                                 onChange={(e) => setData('name', e.target.value)}
                                 type="text"
-                                placeholder="Joe doe..."
+                                placeholder="Admin..."
                                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus-ring-blue-500"
                             />
                             {errors.name && <div className="text-red-600 mt-1">{errors.name}</div>}
