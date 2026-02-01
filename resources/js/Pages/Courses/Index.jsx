@@ -85,13 +85,13 @@ export default function Courses() {
                                     <td className="p-2">{course.teacher?.name || 'No Teacher Assigned'}</td>
                                     <td>
                                         <Link href={route('courses.edit', course.id)} className="inline-block px-3 py-1 bg-yellow-500 text-white rounded hover:bg-yellow-600 transition">Edit</Link>
+                                        <button
+                                            className="inline-block px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition"
+                                            onClick={() => handleDelete(course.id)}>
+                                            Delete
+                                        </button>
+                                        <Link href={route('course.view', course.id)}>Details</Link>
                                     </td>
-                                    <button
-                                        className="inline-block px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition"
-                                        onClick={() => handleDelete(course.id)}>
-                                        Delete
-                                    </button>
-                                    <Link href={route('course.view', course.id)}>Details</Link>
                                 </tr>
                             ))}
                         </tbody>

@@ -12,8 +12,7 @@ class CoursesController extends Controller
         $search = $request->input('search');
         $sortField = $request->input('sort', 'id');
         $sortDirection = $request->input('direction', 'asc');
-        $courses = Course::query()
-            ->with('teacher:name')
+        $courses = Course::with('teacher:id,name')
             ->when($search, function ($query, $search) {
                 $query->where('title', 'like', '%' . $search . '%')
                     ->orWhere('description', 'like', '%' . $search . '%');

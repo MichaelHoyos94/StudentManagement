@@ -3,6 +3,7 @@
 use App\Http\Controllers\CoursesController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RolPermissionController;
 use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\TeachersController;
 use Illuminate\Foundation\Application;
@@ -56,6 +57,10 @@ Route::controller(CoursesController::class)->group(function () {
     Route::get('courses/edit/{id}', 'edit')->name('courses.edit');
     Route::post('courses/update', 'update')->name('courses.update');
     Route::delete('courses/destroy/{id}', 'destroy')->name('courses.delete');
+});
+
+Route::prefix('roles')->group(function () {
+    Route::get('/', [RolPermissionController::class, 'index'])->name('roles.index');
 });
 
 require __DIR__.'/auth.php';
