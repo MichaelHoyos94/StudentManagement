@@ -61,6 +61,12 @@ Route::controller(CoursesController::class)->group(function () {
 
 Route::prefix('roles')->group(function () {
     Route::get('/', [RolPermissionController::class, 'index'])->name('roles.index');
+    Route::get('/create', [RolPermissionController::class, 'create'])->name('roles.create');
+    Route::post('/roles', [RolPermissionController::class, 'store'])->name('roles.store');
+    Route::get('add-permission-to-role/{id}', [RolPermissionController::class, 'AddPermissionToRole'])->name('roles.addPermissionToRole');
+    Route::post('assign-permission/{id}', [RolPermissionController::class, 'AssignPermission'])->name('roles.assignPermission');
+    Route::get('add-users-to-role/{id}', [RolPermissionController::class, 'AddUsersToRole'])->name('roles.addUsersToRole');
+    Route::post('assign-users-to-role/{id}', [RolPermissionController::class, 'AssignUsersToRole'])->name('roles.assignUsersToRole');
 });
 
 require __DIR__.'/auth.php';

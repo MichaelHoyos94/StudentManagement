@@ -18,6 +18,7 @@ export default function Roles() {
                 </header>
                 <Link
                     className="inline-block mb-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
+                    href={route('roles.create')}
                 >
                     Create Role
                 </Link>
@@ -36,7 +37,22 @@ export default function Roles() {
                                 <tr key={role.id}>
                                     <td className="p-2">{index + 1}</td>
                                     <td className="p-2">{role.name}</td>
-                                    <td className="p-2">{role.description}</td>
+                                    <td className="p-2">
+                                        <Link
+                                            className="text-blue-500 hover:text-blue-700"
+                                            href={route('roles.addPermissionToRole', role.id)}
+                                        >
+                                            Add Permission
+                                        </Link>
+                                    </td>
+                                    <td className="p-2">
+                                        <Link
+                                            className="inline-block px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
+                                            href={route('roles.addUsersToRole', role.id)}
+                                        >
+                                            Assign Users
+                                        </Link>
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>

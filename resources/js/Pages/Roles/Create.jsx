@@ -31,52 +31,18 @@ export default function CreateRole() {
                             {errors.name && <div className="text-red-600 mt-1">{errors.name}</div>}
                         </div>
                         <div className="col-span-full">
-                            <label className="block text-gray-700 font-medium mb-1">Email</label>
+                            <label className="block text-gray-700 font-medium mb-1">Description</label>
                             <input
-                                name="email"
-                                value={data.email}
-                                onChange={(e) => setData('email', e.target.value)}
-                                type="email"
-                                placeholder="user@example.com..."
+                                name="description"
+                                value={data.description}
+                                onChange={(e) => setData('description', e.target.value)}
+                                type="text"
+                                placeholder="What does this role have..."
                                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus-ring-blue-500"
                             />
-                            {errors.email && <div className="text-red-600 mt-1">{errors.email}</div>}
+                            {errors.description && <div className="text-red-600 mt-1">{errors.description}</div>}
                         </div>
-                        <div>
-                            <label className="block text-gray-700 font-medium mb-1">Gender</label>
-                            <select
-                                name="gender"
-                                value={data.gender}
-                                onChange={(e) => setData('gender', e.target.value)}
-                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                            >
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
-                            </select>
-                            {errors.gender && <div className="text-red-600 mt-1">{errors.gender}</div>}
-                        </div>
-                        <div className="col-span-full">
-                            <label className="block text-gray-700 font-medium mb-1">Score</label>
-                            <input
-                                name="score"
-                                value={data.score}
-                                onChange={(e) => setData('score', e.target.value)}
-                                type="number"
-                                placeholder="5..."
-                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                            />
-                            {errors.score && <div className="text-red-600 mt-1">{errors.score}</div>}
-                        </div>
-                        <div className="col-span-full">
-                            <label className="block text-gray-700 font-medium mb-1">Image</label>
-                            <input
-                                name="image"
-                                onChange={(e) => setData('image', e.target.files[0])}
-                                type="file"
-                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                            />
-                        </div>
-                        <button type="submit" className="w-full bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Create Student</button>
+                        <button type="submit" className="w-full bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Create Role</button>
                     </form>
                 </div>
             </main>
