@@ -28,6 +28,9 @@ Route::get('students/{page}/{lang?}', function ($page, $lang = 'en') {
 
 Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+// Route redirect to dashboard
+Route::redirect('/', '/dashboard');
+
 Route::controller(StudentsController::class)->group(function () {
     Route::get('students', 'index')->name('students.list');
     Route::get('students/create', 'create')->name('students.create');

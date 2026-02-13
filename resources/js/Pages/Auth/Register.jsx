@@ -14,7 +14,7 @@ export default function Register() {
         post(route('register'));
     };
     return (
-        <div className="min-h-screen flex items-center justify-center bg-slate-50">
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-t from-slate-200 to-slate-400">
             <div className="w-full max-w-md bg-white p-8 rounded-xl shadow-sm">
                 <h1 className="text-2xl font-semibold text-slate-800 text-center mb-2">
                     Registro Académico

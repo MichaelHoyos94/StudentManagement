@@ -1,6 +1,5 @@
 import { Link, usePage } from "@inertiajs/react";
 
-
 export default function Sidebar() {
     const { url, props } = usePage();
     const permissions = props.permissions;
@@ -12,7 +11,7 @@ export default function Sidebar() {
     const hasPermission = (permissionName) => permissions.includes(permissionName);
 
     return (
-        <aside className="w-64 bg-gray-100 p-4 min-h-screen">
+        <aside className="w-64 bg-gray-100 p-4">
             <ul className="space-y-2">
                 {hasPermission('view students') && (
                     <li>

@@ -12,8 +12,8 @@ export default function Register() {
         post(route('login'));
     };
     return (
-        <div className="min-h-screen flex items-center justify-center bg-slate-50">
-            <div className="w-full max-w-md bg-white p-8 rounded-xl shadow-sm">
+        <div className="min-h-dvh flex items-center justify-center bg-gradient-to-t from-slate-200 to-slate-400">
+            <div className="w-full max-w-md bg-white p-8 rounded-xl shadow-xl">
                 <h1 className="text-2xl font-semibold text-slate-800 text-center mb-2">
                     Inicio de sesión
                 </h1>

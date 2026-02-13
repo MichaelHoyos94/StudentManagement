@@ -14,11 +14,11 @@ export default function LanguajeSwitcher() {
         localStorage.setItem('lang', selectedLang)
     }
     return (
-        <div>
+        <div className="flex items-center gap-2">
             <label>
                 {t('Language')}:
             </label>
-            <select onChange={changeLanguage} value={i18n.language}>
+            <select className="rounded-md" onChange={changeLanguage} value={i18n.language}>
                 {languajes.map((lang) => (
                     <option key={lang.code} value={lang.code}>
                         {lang.label}
